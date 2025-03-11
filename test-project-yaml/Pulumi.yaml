@@ -6,7 +6,7 @@ resources:
   # Create cloudfront and S3 bucket for website using 
   # a component (written in typescript) that leverages an AWS CDK construct
   cloudFront:
-    type: cdk-component:CloudFrontS3Comp
+    type: cloudfront-s3-cdk:CloudFrontS3
   # Populate the bucket with website content
   index.html:
     type: aws:s3:BucketObject

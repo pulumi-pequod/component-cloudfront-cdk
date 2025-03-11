@@ -4,14 +4,14 @@ import * as aws from "@pulumi/aws";
 import * as fs from "fs";
 import * as mime from "mime-types";
 
-import { CloudFrontS3Comp} from "../cloudFrontS3"; 
+import { CloudFrontS3} from "../cloudFrontS3"; 
 
 // Naming convention
 const config = new pulumi.Config();
 const prefix = config.get("prefix") || pulumi.getStack();
 
 // Instantiate the resources using the CDK construct
-const cloudFrontS3Deployment= new CloudFrontS3Comp(prefix);
+const cloudFrontS3Deployment= new CloudFrontS3(prefix);
 const cloudFrontDomain = cloudFrontS3Deployment.cloudFrontDomain;
 
 // Create an website objects in the bucket created by CDK construct above. 

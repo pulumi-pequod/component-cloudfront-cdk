@@ -6,7 +6,7 @@ import { aws_cloudfront } from 'aws-cdk-lib';
 
 
 // Define class that acts as a set of CDK and other Pulumi resources
-class CloudFrontS3 extends pulumicdk.Stack {
+class CloudFrontS3Stack extends pulumicdk.Stack {
 
   cloudFrontDomain: pulumi.Output<string>;
   websiteBucketName: pulumi.Output<string>;
@@ -34,7 +34,7 @@ class CloudFrontS3 extends pulumicdk.Stack {
 class CloudFrontS3Deployment extends pulumicdk.App {
   constructor(prefix: string, props: pulumicdk.AppResourceOptions) {
     super('cloudfronts3deployment', (scope: pulumicdk.App) => {
-        const stack = new CloudFrontS3(scope, `${prefix}-cf-s3`, {});
+        const stack = new CloudFrontS3Stack(scope, `${prefix}-cf-s3`, {});
         return { 
           cloudFrontDomain: stack.cloudFrontDomain,
           websiteBucketName: stack.websiteBucketName
@@ -45,12 +45,12 @@ class CloudFrontS3Deployment extends pulumicdk.App {
 }
 
 // This resources helps you create a self signed certificate.
-export class CloudFrontS3Comp extends pulumi.ComponentResource {
+export class CloudFrontS3 extends pulumi.ComponentResource {
   public readonly cloudFrontDomain: pulumi.Output<any>;
   public readonly websiteBucketName: pulumi.Output<any>;
 
-  constructor(name: string, args?: CloudFrontS3CompArgs, opts?: pulumi.ComponentResourceOptions) {
-      super("cdk-component:index:CloudFrontS3Comp", name, args, opts);
+  constructor(name: string, args?: CloudFrontS3Args, opts?: pulumi.ComponentResourceOptions) {
+      super("cloudfront-s3-cdk:index:CloudFrontS3Comp", name, args, opts);
 
       const cloudFrontS3Deployment= new CloudFrontS3Deployment(name, {parent: this}) ;
 
@@ -62,5 +62,5 @@ export class CloudFrontS3Comp extends pulumi.ComponentResource {
   }
 }
 
-export interface CloudFrontS3CompArgs {
+export interface CloudFrontS3Args {
 }

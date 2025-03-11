@@ -1,5 +1,5 @@
 {
-    "name": "cdk-component",
+    "name": "cloudfront-s3-cdk",
     "version": "0.1.0",
     "description": "Component that uses Pulumi CDK interop to deploy CDK constructs",
     "devDependencies": {
