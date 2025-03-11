@@ -50,7 +50,7 @@ export class CloudFrontS3 extends pulumi.ComponentResource {
   public readonly websiteBucketName: pulumi.Output<any>;
 
   constructor(name: string, args?: CloudFrontS3Args, opts?: pulumi.ComponentResourceOptions) {
-      super("cloudfront-s3-cdk:index:CloudFrontS3Comp", name, args, opts);
+      super("cloudfront-s3-cdk:index:CloudFrontS3", name, args, opts);
 
       const cloudFrontS3Deployment= new CloudFrontS3Deployment(name, {parent: this}) ;
 
