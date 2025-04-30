@@ -1,3 +1,1 @@
-import * as experimental from "@pulumi/pulumi/provider/experimental";
-
-experimental.componentProviderHost();
+export { CloudFrontS3 } from "./cloudFrontS3";
