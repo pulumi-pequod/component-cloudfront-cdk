@@ -1,22 +1,56 @@
 # component-cloudfront-s3-cdk
-This is a component that uses Pulumi's CDK interop capability to deploy CloudFront with and S3 backend using an AWS CDK construct.
+
+A component that uses Pulumi's CDK interop capability to deploy CloudFront with and S3 backend using an AWS CDK construct.
+
+# Inputs
+
+None
+
+# Outputs
+
+* cloudFrontDomain: The name of the Cloud Front Domain.
+* websiteBucketName: The bucket backend.
 
 # Usage
+## Specify Package in `Pulumi.yaml`
 
-In the folder of the project code that is using the component, run the following command using the release you want.
-```bash
-pulumi package add https://github.com/pulumi-pequod/component-cloudfront-s3-cdk@v0.1.0
+Add the following to your `Pulumi.yaml` file:
+Note: If no version is specified, the latest version will be used.
+
+```
+packages:
+  stackmgmt: https://github.com/pulumi-pequod/component-cloudfront-s3-cdk[@vX.Y.Z]
+``` 
+
+## Use SDK in Program
+
+### Python
+```
+from pulumi_pequod_cloudfront-s3-cdk import CloudFrontS3
+
+cloudfront_s3 = CloudFrontS3("my-cloudfront") 
 ```
 
-# Example Programs
-There are two test projects provided that use the component:
-- Typescript (`test-project-ts`) and 
-- YAML (`test-project-yaml`)
+### Typescript
+```
+import { CloudFrontS3 } from "@pulumi-pequod/cloudfront-s3-cdk";
 
-To use:
-* cd to the test project folder you want to use.
-* `pulumi package add https://github.com/MitchellGerdisch/component-random-abstracted@v0.1.0`
-* `pulumi stack init`
-* Modify the program as you want.
-* `pulumi up`
+const cloudfront = new CloudFrontS3();
+```
+
+### Dotnet
+```
+using PulumiPequod.CloudfrontS3Cdk;
+
+var cloudFront = new CloudFrontS3("mycloudfront");
+```
+
+### YAML
+```
+  stacksettings:
+    type: cloudfront-s3-cdk:CloudFrontS3
+```
+
+
+
 
