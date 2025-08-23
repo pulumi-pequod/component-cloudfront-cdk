@@ -2,7 +2,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as ccapi from "@pulumi/aws-native";
 import * as pulumicdk from '@pulumi/cdk';
 import { CloudFrontToS3 } from "@aws-solutions-constructs/aws-cloudfront-s3";
-import { aws_cloudfront } from 'aws-cdk-lib';
+import { aws_cloudfront, Tags } from 'aws-cdk-lib';
 
 
 // Define class that acts as a set of CDK and other Pulumi resources
@@ -21,6 +21,9 @@ class CloudFrontS3Stack extends pulumicdk.Stack {
         // geoRestriction: aws_cloudfront.GeoRestriction.allowlist('US', 'CA')
       },
     })
+
+    //Add Owner tag to construct
+    Tags.of(cloudfrontBucketInfra).add("Owner", "pequod-demo")
     // Get the domain name for the CloudFront distribution
     this.cloudFrontDomain = this.asOutput(cloudfrontBucketInfra.cloudFrontWebDistribution.distributionDomainName);
 
