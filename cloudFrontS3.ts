@@ -9,10 +9,12 @@ import { aws_cloudfront } from 'aws-cdk-lib';
 class CloudFrontS3Stack extends pulumicdk.Stack {
 
   /**
-   * @returns {cloudFrontDomain} The domain name for the CloudFront distribution
-   * @returns {websiteBucketName} The name of the S3 bucket that is set up to hold the website content.
+   * The domain name for the CloudFront distribution
    */
   cloudFrontDomain: pulumi.Output<string>;
+   /**
+   * The name of the S3 bucket that is set up to hold the website content.
+   */
   websiteBucketName: pulumi.Output<string>;
 
   constructor(app: pulumicdk.App, id: string, options?: pulumicdk.StackOptions) {
