@@ -8,13 +8,7 @@ import { aws_cloudfront } from 'aws-cdk-lib';
 // Define class that acts as a set of CDK and other Pulumi resources
 class CloudFrontS3Stack extends pulumicdk.Stack {
 
-  /**
-   * The domain name for the CloudFront distribution
-   **/
   cloudFrontDomain: pulumi.Output<string>;
-   /**
-   * The name of the S3 bucket that is set up to hold the website content.
-   **/
   websiteBucketName: pulumi.Output<string>;
 
   constructor(app: pulumicdk.App, id: string, options?: pulumicdk.StackOptions) {
@@ -52,7 +46,14 @@ class CloudFrontS3Deployment extends pulumicdk.App {
 
 // This resources helps you create a self signed certificate.
 export class CloudFrontS3 extends pulumi.ComponentResource {
+  
+  /**
+   * The domain name for the CloudFront distribution
+   **/
   public readonly cloudFrontDomain: pulumi.Output<any>;
+  /**
+   * The name of the S3 bucket that is set up to hold the website content.
+   **/
   public readonly websiteBucketName: pulumi.Output<any>;
 
   constructor(name: string, args?: CloudFrontS3Args, opts?: pulumi.ComponentResourceOptions) {
