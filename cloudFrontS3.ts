@@ -8,6 +8,10 @@ import { aws_cloudfront } from 'aws-cdk-lib';
 // Define class that acts as a set of CDK and other Pulumi resources
 class CloudFrontS3Stack extends pulumicdk.Stack {
 
+  /**
+   * @returns {cloudFrontDomain} The domain name for the CloudFront distribution
+   * @returns {websiteBucketName} The name of the S3 bucket that is set up to hold the website content.
+   */
   cloudFrontDomain: pulumi.Output<string>;
   websiteBucketName: pulumi.Output<string>;
 
